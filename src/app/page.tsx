@@ -18,6 +18,7 @@ export default function Home() {
       setData(response);
       setError(null);
     } catch (err) {
+      console.error(err);
       setError('Failed to fetch health status');
       setData(null);
     }
