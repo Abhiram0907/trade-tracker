@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { getHealth } from '@/lib/api';
 
 interface HealthResponse {
   message: string;
@@ -9,25 +8,24 @@ interface HealthResponse {
 }
 
 export default function Home() {
-  const [data, setData] = useState<HealthResponse | null>(null);
-  const [error, setError] = useState<string | null>(null);
 
-  const getHealthStatus = async () => {
-    try {
-      const response = await getHealth();
-      setData(response);
-      setError(null);
-    } catch (err) {
-      console.error(err);
-      setError('Failed to fetch health status');
-      setData(null);
-    }
+  const [data, setData] = useState<HealthResponse | null>(null);
+
+  function getHealthStatus(): void {
+    fetch('https://trade-tracker-backend-kz74.onrender.com/test')
+    .then(response => response.json())
+    .then(data => {
+      setData(data);
+      console.log(data);
+    })
+    .catch(error => {
+      console.error('Error fetching health status:', error);
+    });
   }
 
   return (
     <div>
-      <button className='border border-black-300 rounded-md p-2 m-5' onClick={getHealthStatus}>Check Health</button>
-      {error && <p>Error: {error}</p>}
+      <button className='border border-black-300 rounded-md p-2 m-5' onClick={getHealthStatus}>Test Health</button>
       <p>Status: {data?.message}</p>
       <p>Code: {data?.status}</p>
     </div>
