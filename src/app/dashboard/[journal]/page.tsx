@@ -1,5 +1,3 @@
-'use client'
-
 import { notFound } from 'next/navigation'
 
 type Journal = {
@@ -37,13 +35,9 @@ const mockJournals: Record<string, Journal> = {
 
 export default async function JournalDashboard({ params }: { params: { journal: string } }) {
 
-const journalId = await params.journal 
-  const journal = mockJournals[journalId]
+  const journal = mockJournals[params.journal]
 
-  if (!journal) 
-    
-    
-    {
+  if (!journal) {
     notFound()
   }
 

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { encode } from 'querystring';
+import { useEffect, useState } from 'react';
 
 interface HealthResponse {
   message: string;
@@ -8,7 +9,10 @@ interface HealthResponse {
 }
 
 export default function Home() {
-  sessionStorage.setItem('userId', '12345');
+  const userId = '1244542koingomfogmeoineo12345'
+  useEffect(() => {
+    sessionStorage.setItem('userId',userId);
+  }, []);
   const [data, setData] = useState<HealthResponse | null>(null);
 
   function getHealthStatus(): void {
