@@ -1,6 +1,4 @@
 // components/AddTradeForm.tsx
-'use client'
+'use client';
 
-export default function AddTradeForm() {
-
-}
+export default function AddTradeForm() {}
