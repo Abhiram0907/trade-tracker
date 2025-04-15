@@ -12,3 +12,8 @@ export interface Trade {
   notes?: string;
   screenshotUrl?: string;
 }
+
+export interface AddJournalRequest {
+  name: string;
+  initial_balance: 'long' | 'short';
+}
