@@ -16,7 +16,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { addNewJournal, getJournals } from "../../lib/api"
 import { DialogClose } from "@radix-ui/react-dialog"
-import {USER_ID}  from "../page"
+import { USER_ID }  from "../page"
 
 export default function DashboardPage() {
   const [journals, setJournals] = useState<Journal[]>([])
