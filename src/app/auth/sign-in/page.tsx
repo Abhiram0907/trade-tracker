@@ -1,17 +1,14 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { Separator } from "@/components/ui/separator"
 import Link from "next/link"
 
 export default function SignInPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
-      <div
-        className="border rounded-lg shadow-xl p-10 grid gap-6
-          w-[90%] sm:w-[400px] md:w-[500px] lg:w-[600px]"
-      >
+      <div className="bg-card border rounded-lg shadow-xl p-10 grid gap-6 w-[90%] sm:w-[400px] md:w-[500px] lg:w-[600px]">
         <div className="text-center text-lg font-semibold tracking-wide">TRADE TRACKER</div>
-
         <form>
           <div className="grid gap-4">
             <div className="grid gap-2">
@@ -44,14 +41,11 @@ export default function SignInPage() {
             </Button>
           </div>
         </form>
-
-        <div className="relative">
-          <div className="absolute inset-0 flex items-center">
-            <span className="w-full border-t" />
-          </div>
-          <div className="relative flex justify-center text-xs uppercase">
-            <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
-          </div>
+        <Separator className="bg-white"/>
+        <div className="flex items-center justify-center gap-4 text-xs uppercase text-muted-foreground">
+          <div className="h-px flex-1 bg-border" />
+          <span>Or continue with</span>
+          <div className="h-px flex-1 bg-border" />
         </div>
 
         <div className="grid grid-cols-2 gap-4">

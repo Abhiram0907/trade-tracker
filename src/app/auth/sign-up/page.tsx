@@ -7,7 +7,7 @@ export default function SignUpPage() {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background px-4">
         <div
-          className="border rounded-lg shadow-xl p-10 grid gap-6
+          className="bg-card border rounded-lg shadow-xl p-10 grid gap-6
             w-[90%] sm:w-[400px] md:w-[500px] lg:w-[600px]"
         >
           <div className="text-center text-lg font-semibold tracking-wide">TRADE TRACKER</div>

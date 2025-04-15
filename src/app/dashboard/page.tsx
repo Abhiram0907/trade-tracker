@@ -63,7 +63,7 @@ export default function DashboardPage() {
           <DialogTrigger asChild>
             <Button variant="outline" onClick={setToInputsToEmpty}>+ Add New Journal</Button>
           </DialogTrigger>
-          <DialogContent className="max-w-sm">
+          <DialogContent className="max-w-sm backdrop-blur-3xl">
             <DialogHeader>
               <DialogTitle>Add Journal</DialogTitle>
               <DialogDescription>
@@ -96,7 +96,7 @@ export default function DashboardPage() {
 
               <DialogFooter>
                 <DialogClose asChild>
-                  <Button type="submit">Save Journal</Button>
+                  <Button type="submit" className="border text-black bg-white">Save Journal</Button>
                 </DialogClose> 
               </DialogFooter>
             </form>
