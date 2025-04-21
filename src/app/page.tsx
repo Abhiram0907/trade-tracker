@@ -1,33 +1,20 @@
 'use client';
 
-import { useState } from 'react';
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
-interface HealthResponse {
-  message: string;
-  status: number;
-}
+export const USER_ID = "1"
 
-export default function Home() {
+export default async function Home() {
+    // const token = (await cookies()).get('token')?.value;
 
-  const [data, setData] = useState<HealthResponse | null>(null);
+    const token = true
 
-  function getHealthStatus(): void {
-    fetch('https://trade-tracker-backend-kz74.onrender.com/test')
-    .then(response => response.json())
-    .then(data => {
-      setData(data);
-      console.log(data);
-    })
-    .catch(error => {
-      console.error('Error fetching health status:', error);
-    });
-  }
+    if (!token) {
+      redirect('/auth/sign-in');
+    } else {
+      redirect('/journal');
+    }
 
-  return (
-    <div>
-      <button className='border border-black-300 rounded-md p-2 m-5' onClick={getHealthStatus}>Test Health</button>
-      <p>Status: {data?.message}</p>
-      <p>Code: {data?.status}</p>
-    </div>
-  );
+    return null;
 }
