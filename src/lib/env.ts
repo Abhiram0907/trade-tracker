@@ -1,5 +1,5 @@
 
-const IS_PRODUCTION = false;
+const IS_PRODUCTION = true;
 
 const LOCAL_API_BASE = 'http://localhost:3333';
 const PROD_API_BASE = 'https://trade-tracker-backend-ffc7.onrender.com';
