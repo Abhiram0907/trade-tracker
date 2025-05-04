@@ -3,8 +3,6 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export const USER_ID = "1"
-
 export default async function Home() {
     // const token = (await cookies()).get('token')?.value;
 

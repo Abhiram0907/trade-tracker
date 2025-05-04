@@ -14,9 +14,8 @@ import {
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { addNewJournal, getJournals } from "../../lib/api"
+import { addNewJournal, deleteJournal, getJournals } from "../../lib/api"
 import { DialogClose } from "@radix-ui/react-dialog"
-import { USER_ID }  from "../page"
 
 export default function DashboardPage() {
   const [journals, setJournals] = useState<Journal[]>([])
@@ -29,7 +28,7 @@ export default function DashboardPage() {
     e.preventDefault()
 
     await addNewJournal(journalName, initialBalance)
-    const updated = await getJournals(USER_ID)
+    const updated = await getJournals()
     setJournals(updated)
     setToInputsToEmpty()
     setOpen(false)
@@ -46,9 +45,22 @@ export default function DashboardPage() {
     return (starting_balance - active_balance)
   }
 
+  const handleDeleteJournal = async (id: string) => {
+    const confirmed = confirm("Are you sure you want to delete this journal?");
+    if (!confirmed) return;
+  
+    try {
+      await deleteJournal(id)
+      const updateAfterDelete = await getJournals()
+      setJournals(updateAfterDelete)
+    } catch (err) {
+      console.error("Failed to delete journal:", err);
+    }
+  };
+
   useEffect(() => {
     async function fetchJournals() {
-      const journals = await getJournals(USER_ID)
+      const journals = await getJournals()
       setJournals(journals)
     }
     fetchJournals()
@@ -123,6 +135,13 @@ export default function DashboardPage() {
             >
               {pnlCalc(journal.initial_balance, journal.current_balance) >= 0 ? `+${pnlCalc(journal.initial_balance, journal.current_balance).toFixed(2)}` : pnlCalc(journal.initial_balance, journal.current_balance).toFixed(2)}
             </div>
+            <button
+              onClick={() => handleDeleteJournal(journal.id)}
+              className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+              title="Delete journal"
+            >
+              🗑️
+            </button>
           </Link>
         ))}
       </div>
