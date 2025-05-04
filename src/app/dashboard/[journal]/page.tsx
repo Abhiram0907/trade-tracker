@@ -33,9 +33,11 @@ const mockJournals: Record<string, Journal> = {
   },
 }
 
-export default async function JournalDashboard({ params }: { params: { journal: string } }) {
+export default async function JournalDashboard({ params }: {params: Promise<{journal: string}>}) {
 
-  const journal = mockJournals[params.journal]
+  const journal = mockJournals[(await params).journal]
+
+  const USER_ID='1'
 
   if (!journal) {
     notFound()

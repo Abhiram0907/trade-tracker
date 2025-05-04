@@ -1,22 +1,22 @@
 // lib/api.ts
-import { USER_ID } from '@/app/page';
-import { AddJournalRequest, Trade } from '@/types/trade';
+import { Trade } from '@/types/trade';
+import { API_BASE_URL } from './env';
+
+const USER_ID = '1';
 
 export async function addTrade(req: Partial<Trade>) {
-  const res = await fetch(`https://trade-tracker-backend-kz74.onrender.com/health`, {
+  const res = await fetch(`${API_BASE_URL}/health`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(req),
+    body: JSON.stringify(req), // 🟡 probably shouldn't send body with GET
   });
   if (!res.ok) throw new Error('Failed to add trade');
-  console.log(res);
   return res.json();
 }
 
 export async function addNewJournal(journal_name: string, initial_balance: string) {
-
   try {
-    const response = await fetch(`http://localhost:3333/add-journal`, {
+    const response = await fetch(`${API_BASE_URL}/add-journal`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -24,27 +24,46 @@ export async function addNewJournal(journal_name: string, initial_balance: strin
       },
       body: JSON.stringify({
         user_id: USER_ID,
-        journal_name: journal_name,
-        initial_balance: initial_balance
+        journal_name,
+        initial_balance
       }),
-    })
-    const data = await response.json()
-    console.log(data.data)
-    return data.data
+    });
+    const data = await response.json();
+    return data.data;
   } catch (error) {
-    console.error("Error fetching journals:", error)
-    throw error
+    console.error("Error adding journal:", error);
+    throw error;
   }
 }
 
-export async function getJournals(userID: string): Promise<Journal[]> {
+export async function getJournals(): Promise<Journal[]> {
   try {
-    const response = await fetch(`http://localhost:3333/get-all-journals?user_id=${userID}`)
-    const data = await response.json()
-    console.log(data.data)
-    return data.data
+    const response = await fetch(`${API_BASE_URL}/get-all-journals?user_id=${USER_ID}`);
+    const data = await response.json();
+    return data.data;
   } catch (error) {
-    console.error("Error fetching journals:", error)
-    throw error
+    console.error("Error fetching journals:", error);
+    throw error;
+  }
+}
+
+export async function deleteJournal(journalId: string): Promise<Journal[]> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/delete-journal`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify({
+        user_id: USER_ID,
+        journal_id: journalId,
+      }),
+    });
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error("Error deleting journal:", error);
+    throw error;
   }
 }
