@@ -11,7 +11,7 @@ export default async function Home() {
     if (!token) {
       redirect('/auth/sign-in');
     } else {
-      redirect('/journal');
+      redirect('/dashboard');
     }
 
     return null;
