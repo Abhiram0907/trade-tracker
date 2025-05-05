@@ -10,7 +10,7 @@ export default function DashboardPage() {
   const { journals, addJournal, removeJournal } = useJournals()
 
   return (
-    <div className="min-h-screen px-4 py-10 sm:px-6 lg:px-8 bg-background text-foreground">
+    <div className="px-4 py-10 sm:px-6 lg:px-8 bg-background text-foreground">
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-2xl font-bold">Your Journals</h1>
         <AddJournalDialog onSubmit={addJournal} />
