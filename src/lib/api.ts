@@ -36,6 +36,17 @@ export async function addNewJournal(journal_name: string, initial_balance: strin
   }
 }
 
+export async function getTradesByJournal(journal_id: string): Promise<Trade[]> {
+  try {
+    const response = await fetch(`${API_BASE_URL}/get-trades?user_id=${USER_ID}&journal_id=${journal_id}`);
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error(`Error fetching trades for journal: ${journal_id}`, error);
+    throw error;
+  }
+}
+
 export async function getJournals(): Promise<Journal[]> {
   try {
     const response = await fetch(`${API_BASE_URL}/get-all-journals?user_id=${USER_ID}`);

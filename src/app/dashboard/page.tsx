@@ -3,7 +3,6 @@
 import { AddJournalDialog } from "@/components/AddJournalDialogue"
 import { JournalCard } from "@/components/JournalCard"
 import { useJournals } from "@/hooks/useJournal"
-import Link from "next/link"
 
 
 export default function DashboardPage() {
@@ -16,7 +15,7 @@ export default function DashboardPage() {
         <AddJournalDialog onSubmit={addJournal} />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-3 gap-4 overflow-y-auto max-h-screen">
         {journals.map(journal => (
           <JournalCard key={journal.id} journal={journal} onDelete={removeJournal} />
         ))}

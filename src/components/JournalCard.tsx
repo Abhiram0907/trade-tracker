@@ -8,7 +8,7 @@ export function JournalCard({ journal, onDelete }: {
   const pnl = pnlCalc(journal.initial_balance, journal.current_balance)
   return (
     <Link
-      href={``}
+      href={`/dashboard/trades/${journal.id}`}
       className="group border rounded-lg p-6 bg-card hover:bg-muted/10 transition-colors relative"
     >
       <div className="flex flex-col gap-1">
