@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { getTradesByJournal } from "@/lib/api"
 import { useJournals } from "@/hooks/useJournal"
 import { Trade } from "@/types/trade"
+import { AddTradeDialog } from "./AddTradeDialogue"
 
 export function TradeClientView({ journalId }: { journalId: string }) {
   const [trades, setTrades] = useState<Trade[]>([])
@@ -41,13 +42,11 @@ export function TradeClientView({ journalId }: { journalId: string }) {
   }
 
   return (
-    <div>
-      <h1 className="text-xl font-bold mb-4">Trades for {journalName}</h1>
-      {/* {trades.length === 0 ? (
-        <p className="text-sm text-muted-foreground">No trades found.</p>
-      ) : (
-        <pre>{JSON.stringify(trades, null, 2)}</pre>
-      )} */}
+    <div className="px-4 py-10 sm:px-6 lg:px-8 bg-background text-foreground">
+      <div className="flex items-center justify-between mb-8">
+        <h1 className="text-2xl font-bold">Trades for {journalName}</h1>
+        <AddTradeDialog />
+      </div>
     </div>
   )
 }
