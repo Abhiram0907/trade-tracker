@@ -15,7 +15,7 @@ export default function DashboardPage() {
         <AddJournalDialog onSubmit={addJournal} />
       </div>
 
-      <div className="grid grid-cols-3 gap-4 overflow-y-auto max-h-screen">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
         {journals.map(journal => (
           <JournalCard key={journal.id} journal={journal} onDelete={removeJournal} />
         ))}

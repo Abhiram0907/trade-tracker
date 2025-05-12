@@ -9,11 +9,11 @@ export function JournalCard({ journal, onDelete }: {
   return (
     <Link
       href={`/dashboard/trades/${journal.id}`}
-      className="group border rounded-lg p-6 bg-card hover:bg-muted/10 transition-colors relative"
+      className="group w-full bg-card rounded p-5 transition-colors relative hover:bg-muted/10"
     >
       <div className="flex flex-col gap-1">
-        <h2 className="text-lg font-medium group-hover:underline">{journal.name}</h2>
-        <p className="text-xs text-muted-foreground">ID: {journal.id}</p>
+        <h2 className="text-lg font-medium group-hover:underline break-words">{journal.name}</h2>
+        <p className="text-xs text-muted-foreground break-all">ID: {journal.id}</p>
       </div>
       <div className={`mt-4 text-sm font-semibold ${pnl >= 0 ? "text-green-500" : "text-red-500"}`}>
         {pnl >= 0 ? `+${pnl.toFixed(2)}` : pnl.toFixed(2)}
